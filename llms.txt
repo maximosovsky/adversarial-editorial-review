@@ -1,0 +1,16 @@
+# Adversarial Editorial Review
+
+> Rigorous adversarial peer review of humanities scholarship — three independent reviewers, one editorial synthesis. Hermes port of the original Claude skill by Halfofthesky.
+
+## About
+
+This is a Hermes Agent skill that conducts adversarial peer review of academic texts in the humanities and social sciences. Three independent reviewers with distinct critical orientations read the submitted text; an editorial synthesis consolidates their reports into a prioritised revision agenda and overall verdict. Designed to surface weaknesses that any single reading perspective would miss.
+
+Author: Maxim Osovsky / maximosovsky
+URL: https://github.com/maximosovsky/adversarial-editorial-review
+License: MIT
+Upstream: https://github.com/Halfofthesky/adversarial-editorial-review
+
+## Docs
+
+Full reference: https://raw.githubusercontent.com/maximosovsky/adversarial-editorial-review/main/llms-full.txt

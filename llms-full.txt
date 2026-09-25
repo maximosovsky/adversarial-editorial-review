@@ -1,0 +1,137 @@
+# Adversarial Editorial Review — Full Reference
+
+## Overview
+
+Adversarial Editorial Review is a structured workflow for rigorous adversarial peer review of humanities scholarship, delivered as a Hermes Agent skill (ported from the original Claude skill by Halfofthesky).
+
+Three independent reviewers with distinct critical orientations read the submitted text:
+1. Reviewer 1 — The Evidential Sceptic (attacks from below: evidence)
+2. Reviewer 2 — The Conceptual Antagonist (attacks from within: logic)
+3. Reviewer 3 — The Positional Critic (attacks from outside: framing)
+
+An editorial synthesis consolidates their reports into a prioritised revision agenda and overall verdict. Designed to surface weaknesses that any single reading perspective would miss.
+
+The three roles are designed so that their adversarial pressures are structurally non-convergent: fixing what Reviewer 1 finds often does not help with Reviewer 3, and satisfying Reviewer 2's demand for conceptual precision may sharpen exactly the exclusions Reviewer 3 is looking for. That tension is the point — it forces explicit trade-offs.
+
+Author: Maxim Osovsky / maximosovsky
+URL: https://github.com/maximosovsky/adversarial-editorial-review
+License: MIT
+Upstream: https://github.com/Halfofthesky/adversarial-editorial-review
+
+## Features
+
+- Three adversarial reviewers with distinct critical orientations and non-convergent pressures
+- Editorial synthesis: convergence, divergence, prioritised revision agenda, overall assessment
+- Three severity levels: Developmental, Standard, Stress-test
+- Prose diagnostics: jargon density, assertion-to-evidence ratio, hedging patterns, sentence length variation, passive voice concentration
+- Bibliographic check: cited-but-not-discussed, discussed-but-not-cited, internal inconsistencies, obvious absences, citational politics
+- Author's rebuttal: simulated response showing survivable vs. structural objections
+- Revision tracking: compare revised text against previous review
+- Genre-aware calibration for journal articles, dissertation chapters, conference papers, book proposals, grant applications
+
+## Architecture
+
+### Skill Structure
+
+```
+adversarial-peer-review/
+├── SKILL.md                          # Main skill: workflow, formatting, tone
+└── references/
+    ├── methodology.md                # Shared evaluative criteria all reviewers use
+    ├── reviewers.md                  # Three adversarial reviewer roles and logic
+    ├── synthesis.md                  # Editorial synthesis + rebuttal + revision tracking
+    └── diagnostics.md               # Prose diagnostics + bibliographic check
+```
+
+### The Three Reviewers
+
+**Reviewer 1 — The Evidential Sceptic**
+- Target: empirical foundation (attacks from below)
+- Stance: evidence is weaker than claimed until proven otherwise
+- Question: Does the material actually support what the author claims?
+- Examines: source adequacy, evidence–interpretation gap, representative force, cherry-picking, periodisation, computational evidence
+- Calibrated by genre (journal article, dissertation chapter, conference paper, book proposal)
+
+**Reviewer 2 — The Conceptual Antagonist**
+- Target: intellectual architecture (attacks from within)
+- Stance: argument contains a hidden flaw until proven otherwise
+- Question: Does the argument actually hold together?
+- Examines: thesis clarity, terminological discipline, logical structure, theoretical coherence, rhetorical concealment, framework–material gap
+- Calibrated by genre
+
+**Reviewer 3 — The Positional Critic**
+- Target: the frame itself (attacks from outside)
+- Stance: framing is narrower than acknowledged until proven otherwise
+- Question: What does the article's own framing make it unable to see?
+- Examines: citational politics, absent perspectives, reproduced assumptions, self-positioning, audience mismatch, power and position
+- Calibrated by genre
+
+### Editorial Synthesis Structure
+
+- Convergence — concerns raised by 2+ reviewers
+- Divergence — disagreements (interpretive, emphasis, structural non-convergence)
+- Prioritised revision agenda — 5-10 items, most urgent first, each with: problem statement, reviewer(s), revision type, scale estimate (minor/moderate/major)
+- Overall assessment — accept with minor revisions / revise and resubmit / major revision / reject (or "Rethink and restart" at Developmental)
+
+### Author's Rebuttal
+
+Simulated from a competent, non-defensive author. Each concern classified as:
+- Accepted — valid, will fix concretely
+- Partially accepted — merit but overstated; alternative fix offered
+- Rebutted — based on misunderstanding, inappropriate standard, or unreasonable expectation
+
+Ends with Residual Vulnerabilities — concerns that could not be fully rebutted.
+
+### Severity Levels
+
+- Developmental — constructive, forward-looking; revision suggestions; omit rebuttal; "Rethink and restart" instead of "reject"
+- Standard (default) — honest journal-level assessment; revision suggestions; ask about rebuttal
+- Stress-test — hostile reviewers; flag every weakness; omit revision suggestions; include rebuttal by default
+
+### Prose Diagnostics
+
+Integrated into reviews, not a separate section:
+- Jargon density — spikes often correlate with weak argument
+- Assertion-to-evidence ratio — mostly-assertion paragraphs are weak points
+- Hedging patterns — concentration in key claims signals uncertainty
+- Sentence length variation — very long sentences in argumentative passages may conceal weak logic
+- Passive voice concentration — habitual passivity can obscure agency
+
+## Technical Details
+
+- Format: Hermes Agent skill (SKILL.md + references/)
+- Original: Claude Code skill with Cowork plugin support
+- Language: English (skill and references)
+- Scope: literary criticism, intellectual history, cultural studies, political theory, art history, musicology, area studies, philosophy, adjacent fields
+- Not designed for: STEM peer review, book reviews for publication, copyediting
+
+## Quick Start
+
+Install in Hermes:
+```bash
+cp -r skills/adversarial-peer-review ~/.hermes/skills/
+```
+
+Usage:
+- "Review this article."
+- "Stress-test this before I submit to Modern Language Review."
+- "Give me a developmental review of this dissertation chapter."
+- "This is a revised version — compare against the previous review."
+
+## Roadmap
+
+- [x] Hermes skill port
+- [x] GitHub repo with README, llms.txt, llms-full.txt
+- [ ] Hermes plugin wrapper (/review slash command)
+- [ ] Sample review output in examples/
+- [ ] CI validation for skill structure
+- [ ] Upstream PR: offer Hermes compatibility layer
+
+## Contributing
+
+Fork → feature/name → PR
+Issues and PRs welcome. For substantive changes to reviewer roles or methodology, open an issue first.
+
+## License
+
+MIT — same as upstream (Halfofthesky/adversarial-editorial-review).
